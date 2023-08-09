@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:riverpod_guide/infrastructure/auth/enums/auth_status.dart';
 
 class AuthState {

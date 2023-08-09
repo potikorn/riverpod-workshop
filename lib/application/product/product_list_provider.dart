@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Project imports:
 import 'package:riverpod_guide/application/common/http_provider.dart';
 import 'package:riverpod_guide/application/common/pagination/pagination_provider.dart';
 import 'package:riverpod_guide/application/common/pagination/pagination_state.dart';

@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:riverpod_guide/domain/products/product.dart';
 
 part 'products_dto.freezed.dart';

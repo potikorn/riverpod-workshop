@@ -1,11 +1,16 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+
+// Package imports:
 import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_guide/application/config/network/error_exception.dart';
 
+// Project imports:
+import 'package:riverpod_guide/application/config/network/error_exception.dart';
 import 'pagination_state.dart';
 
 class PaginationNotifier<T> extends StateNotifier<PaginationState<T>> {

@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:riverpod_guide/domain/products/product.dart';
 import 'package:riverpod_guide/presentation/product/widgets/label_icon_horizontal.dart';
 

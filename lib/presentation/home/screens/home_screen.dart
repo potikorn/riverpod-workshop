@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Project imports:
 import 'package:riverpod_guide/application/home/home_controller.dart';
 import 'package:riverpod_guide/presentation/product/screens/products_screen.dart';
 import 'package:riverpod_guide/presentation/settings/screens/settings_screen.dart';

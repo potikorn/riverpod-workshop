@@ -1,5 +1,8 @@
+// Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Project imports:
 import 'package:riverpod_guide/application/auth/auth_provider.dart';
 import 'package:riverpod_guide/infrastructure/auth/enums/auth_status.dart';
 import 'package:riverpod_guide/presentation/auth/screens/login_screen.dart';
@@ -7,7 +10,6 @@ import 'package:riverpod_guide/presentation/home/screens/home_screen.dart';
 import 'package:riverpod_guide/presentation/product/screens/products_screen.dart';
 import 'package:riverpod_guide/presentation/settings/screens/settings_screen.dart';
 import 'package:riverpod_guide/presentation/unauthorized_screen.dart';
-
 import 'error_screen.dart';
 
 final appRoutes = [

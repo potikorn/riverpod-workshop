@@ -4,5 +4,9 @@
     "fpdart",
     "middlewares",
     "riverpod"
-  ]
+  ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll": true,
+  }
 }

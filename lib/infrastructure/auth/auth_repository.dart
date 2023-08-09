@@ -1,8 +1,11 @@
+// Package imports:
 import 'package:fpdart/fpdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// Project imports:
 import 'package:riverpod_guide/application/config/network/base_http_client.dart';
 import 'package:riverpod_guide/application/config/network/error_exception.dart';
 import 'package:riverpod_guide/domain/auth/i_auth_repository.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository implements IAuthRepository {
   final BaseHttpClient _client;
@@ -20,7 +23,7 @@ class AuthRepository implements IAuthRepository {
       body: {
         "username": email,
         "password": password,
-        // "expiresInMins": 1,
+        "expiresInMins": 1,
       },
     );
     return response.fold(

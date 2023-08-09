@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:fpdart/fpdart.dart';
+
+// Project imports:
 import 'package:riverpod_guide/application/config/network/error_exception.dart';
 
 abstract class IAuthRepository {

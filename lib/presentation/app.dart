@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+// Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Project imports:
 import 'package:riverpod_guide/application/router/app_routes.dart';
+import 'app_theme.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});
@@ -10,15 +15,8 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: _buildTheme(),
+      theme: buildLightTheme(),
       routerConfig: getRoutes(ref),
     );
   }
-}
-
-ThemeData _buildTheme() {
-  var baseTheme = ThemeData.light(useMaterial3: true);
-  return baseTheme.copyWith(
-    textTheme: GoogleFonts.kanitTextTheme(baseTheme.textTheme),
-  );
 }

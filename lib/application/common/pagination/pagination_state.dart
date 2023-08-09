@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:riverpod_guide/application/config/network/error_exception.dart';
 
 part 'pagination_state.freezed.dart';

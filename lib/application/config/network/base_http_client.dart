@@ -1,11 +1,17 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:io';
 
+// Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// Package imports:
 import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:pretty_http_logger/pretty_http_logger.dart';
+
+// Project imports:
 import 'package:riverpod_guide/application/auth/auth_provider.dart';
 import 'package:riverpod_guide/application/common/storage_provider.dart';
 import 'package:riverpod_guide/application/config/network/error_exception.dart';
