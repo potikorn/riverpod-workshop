@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
@@ -13,10 +14,11 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final GoRouter router = ref.watch(goRouterProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: buildLightTheme(),
-      routerConfig: getRoutes(ref),
+      routerConfig: router,
     );
   }
 }
