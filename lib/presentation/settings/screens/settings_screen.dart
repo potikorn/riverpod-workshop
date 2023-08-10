@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
 import 'package:riverpod_guide/application/auth/auth_provider.dart';
-import 'package:riverpod_guide/application/utils/riverpod_utils.dart';
+import 'package:riverpod_guide/shared/utils/riverpod_utils.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});

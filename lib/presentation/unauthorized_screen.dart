@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
 import 'package:riverpod_guide/application/auth/auth_provider.dart';
-import '../application/utils/riverpod_utils.dart';
+import '../shared/utils/riverpod_utils.dart';
 
 class UnauthorizedScreen extends ConsumerWidget {
   const UnauthorizedScreen({super.key});

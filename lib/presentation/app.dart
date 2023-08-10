@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
-import 'package:riverpod_guide/application/router/app_routes.dart';
+import 'package:riverpod_guide/presentation/router/app_routes.dart';
 import 'app_theme.dart';
 
 class App extends ConsumerWidget {

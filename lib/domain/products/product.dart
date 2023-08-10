@@ -2,7 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:riverpod_guide/application/utils/formatter/currency_formatter.dart';
+import 'package:riverpod_guide/shared/utils/formatter/currency_formatter.dart';
 
 part 'product.freezed.dart';
 

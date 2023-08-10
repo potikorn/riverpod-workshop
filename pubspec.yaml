@@ -77,6 +77,7 @@ dev_dependencies:
   build_runner: ^2.4.6
   mocktail: 1.0.0
   import_sorter: ^4.6.0
+  process_run: 0.13.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

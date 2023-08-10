@@ -3,6 +3,7 @@
     "cupertino",
     "fpdart",
     "middlewares",
+    "mocktail",
     "riverpod"
   ],
   "editor.codeActionsOnSave": {
