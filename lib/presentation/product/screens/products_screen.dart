@@ -63,8 +63,7 @@ class ProductsScreen extends HookConsumerWidget {
           },
           error: (error, stackTrace) {
             log(stackTrace.toString());
-            final errorMap = error;
-            final message = errorMap.mapOrNull(
+            final message = error.mapOrNull(
               serverError: (exception) => exception.message,
               notFound: (exception) => exception.message,
             );

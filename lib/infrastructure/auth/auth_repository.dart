@@ -23,7 +23,7 @@ class AuthRepository implements IAuthRepository {
       body: {
         "username": email,
         "password": password,
-        "expiresInMins": 5,
+        "expiresInMins": 60,
       },
     );
     return response.fold(
