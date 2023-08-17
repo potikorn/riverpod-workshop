@@ -12,6 +12,7 @@ import 'package:riverpod_guide/presentation/auth/screens/login_screen.dart';
 import 'package:riverpod_guide/presentation/home/screens/home_screen.dart';
 import 'package:riverpod_guide/presentation/product/screens/products_screen.dart';
 import 'package:riverpod_guide/presentation/unauthorized_screen.dart';
+import '../cart/screens/cart_screen.dart';
 import '../settings/screens/settings_screen.dart';
 import 'error_screen.dart';
 
@@ -66,6 +67,15 @@ final appRoutes = [
         name: ProductsScreen.named,
         pageBuilder: (context, state) => NoTransitionPage(
           child: ProductsScreen(
+            key: state.pageKey,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: "/${CartScreen.path}",
+        name: CartScreen.named,
+        pageBuilder: (context, state) => NoTransitionPage(
+          child: CartScreen(
             key: state.pageKey,
           ),
         ),
