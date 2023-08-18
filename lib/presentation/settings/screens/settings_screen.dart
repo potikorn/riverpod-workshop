@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
@@ -29,7 +30,7 @@ class SettingScreen extends StatelessWidget {
               },
               child: authLoading
                   ? const CircularProgressIndicator()
-                  : const Text("Log out"),
+                  : Text("logout_button".tr()),
             ),
           ],
         );

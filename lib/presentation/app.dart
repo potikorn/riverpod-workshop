@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,6 +18,9 @@ class App extends ConsumerWidget {
     final GoRouter router = ref.watch(goRouterProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       theme: buildLightTheme(),
       routerConfig: router,
     );
