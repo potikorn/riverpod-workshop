@@ -27,7 +27,6 @@ class ProductItem extends StatelessWidget {
                 width: double.infinity,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
-                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Image.network(
