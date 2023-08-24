@@ -66,10 +66,11 @@ dependencies:
 
   # Localization
   easy_localization: 3.0.2
-  
+
   # Local Database
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
+  collection: ^1.17.1
 
 dev_dependencies:
   flutter_test:
@@ -104,6 +105,7 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
+    - assets/images/logo/brand_cover.png
     - assets/translations/en-US/
     - assets/translations/de-DE/
     - assets/translations/ar-AE/

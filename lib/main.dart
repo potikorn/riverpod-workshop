@@ -1,4 +1,6 @@
 // Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -10,10 +12,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
 import 'package:riverpod_guide/application/cart/cart_provider.dart';
-import 'package:riverpod_guide/application/common/storage_provider.dart';
 import 'package:riverpod_guide/locales/custom_asset_loader.dart';
 import 'package:riverpod_guide/presentation/app.dart';
 import 'infrastructure/cart/local_datasource/cart_entity.dart';
+import 'shared/providers/storage_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -2,12 +2,12 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
-import 'package:riverpod_guide/application/common/http_provider.dart';
-import 'package:riverpod_guide/application/common/storage_provider.dart';
 import 'package:riverpod_guide/domain/auth/i_auth_repository.dart';
 import 'package:riverpod_guide/infrastructure/auth/auth_repository.dart';
 import 'package:riverpod_guide/infrastructure/auth/enums/auth_status.dart';
 import 'package:riverpod_guide/infrastructure/auth/models/auth_state.dart';
+import '../../shared/providers/http_provider.dart';
+import '../../shared/providers/storage_provider.dart';
 
 final authRepository = Provider<AuthRepository>((ref) {
   final client = ref.watch(httpClient);

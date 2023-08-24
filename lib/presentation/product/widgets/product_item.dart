@@ -1,11 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 // Project imports:
 import 'package:riverpod_guide/application/cart/cart_provider.dart';
 import 'package:riverpod_guide/domain/products/product.dart';
 import 'package:riverpod_guide/presentation/product/widgets/label_icon_horizontal.dart';
+import 'package:riverpod_guide/shared/widgets/widgets.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
@@ -34,10 +37,7 @@ class ProductItem extends StatelessWidget {
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(8.0),
                     ),
-                    child: Image.network(
-                      item.thumbnail,
-                      fit: BoxFit.cover,
-                    ),
+                    child: NetworkImageView(item.thumbnail),
                   ),
                 ),
                 Expanded(

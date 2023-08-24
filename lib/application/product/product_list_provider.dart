@@ -2,11 +2,9 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
-import 'package:riverpod_guide/application/common/http_provider.dart';
-import 'package:riverpod_guide/application/common/pagination/pagination_provider.dart';
-import 'package:riverpod_guide/application/common/pagination/pagination_state.dart';
 import 'package:riverpod_guide/domain/products/product.dart';
 import 'package:riverpod_guide/infrastructure/products/product_repository.dart';
+import '../../shared/providers/providers.dart';
 
 final productRepository = Provider<ProductRepository>((ref) {
   final client = ref.watch(httpClient);

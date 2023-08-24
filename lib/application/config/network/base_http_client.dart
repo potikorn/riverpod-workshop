@@ -13,8 +13,8 @@ import 'package:pretty_http_logger/pretty_http_logger.dart';
 
 // Project imports:
 import 'package:riverpod_guide/application/auth/auth_provider.dart';
-import 'package:riverpod_guide/application/common/storage_provider.dart';
 import 'package:riverpod_guide/application/config/network/error_exception.dart';
+import '../../../shared/providers/storage_provider.dart';
 
 class BaseHttpClient {
   final HttpWithMiddleware _client = HttpWithMiddleware.build(

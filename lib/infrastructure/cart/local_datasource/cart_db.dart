@@ -24,11 +24,15 @@ class CartDb implements ICartDb {
   ) async {
     final productItem = ProductEntity()
       ..title = item.title
+      ..description = item.description
+      ..brand = item.brand
+      ..price = item.price
+      ..category = item.category
+      ..rating = item.rating
+      ..stock = item.stock
+      ..imgUrl = item.thumbnail
       ..id = item.id.toString();
-    final checkoutItem = CheckoutItemEntity()
-      ..id = item.id ?? 0
-      ..quantity = 1
-      ..product = productItem;
+    final checkoutItem = CheckoutItemEntity()..product = productItem;
     final entity = await _db.writeTxn(
       () => _db.checkoutItemEntitys.put(checkoutItem),
     );
@@ -43,12 +47,13 @@ class CartDb implements ICartDb {
   Future<Either<Exception, List<CheckoutItemEntity>>> updateItem(
     CheckoutItemEntity entity,
   ) async {
-    await _db.writeTxn(() async {
-      final oldItem = await _db.checkoutItemEntitys.get(entity.id);
-      oldItem?.quantity = oldItem.quantity + 1;
-      await _db.checkoutItemEntitys.put(oldItem!);
-    });
-    return getAllItems();
+    throw UnimplementedError("no implementation found");
+    // await _db.writeTxn(() async {
+    //   final oldItem = await _db.checkoutItemEntitys.get(entity.id);
+    //   oldItem?.quantity = oldItem.quantity + 1;
+    //   await _db.checkoutItemEntitys.put(oldItem!);
+    // });
+    // return getAllItems();
   }
 
   @override

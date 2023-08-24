@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:collection/collection.dart';
 import 'package:fpdart/fpdart.dart';
 
 // Project imports:
@@ -14,31 +15,11 @@ class CartRepository implements ICartRepository {
   CartRepository(this._localDb);
 
   @override
-  Future<Either<Exception, Cart>> addItem(Product item) async {
+  Future<Either<Exception, Cart>> addToCart(Product item) async {
     final result = await _localDb.addItem(item);
     final foldResult = result.fold(
       (l) => l,
-      (r) => Cart(
-        checkoutItems: r
-            .map(
-              (e) => CheckoutItem(
-                id: e.id.toString(),
-                product: Product(
-                  id: e.id,
-                  title: e.product?.title ?? '',
-                  description: '',
-                  brand: '',
-                  category: '',
-                  thumbnail: '',
-                  images: [],
-                ),
-                quantity: e.quantity,
-                createdAt: DateTime.now(),
-                updatedAt: DateTime.now(),
-              ),
-            )
-            .toList(),
-      ),
+      (r) => Cart(checkoutItems: transformToCheckoutItems(r)),
     );
     if (result.isLeft()) {
       return left(foldResult as Exception);
@@ -57,27 +38,7 @@ class CartRepository implements ICartRepository {
     final results = await _localDb.getAllItems();
     final foldResult = results.fold(
       (l) => l,
-      (r) => Cart(
-        checkoutItems: r
-            .map(
-              (e) => CheckoutItem(
-                id: e.id.toString(),
-                product: Product(
-                  id: e.id,
-                  title: e.product?.title ?? '',
-                  description: '',
-                  brand: '',
-                  category: '',
-                  thumbnail: '',
-                  images: [],
-                ),
-                quantity: e.quantity,
-                createdAt: DateTime.now(),
-                updatedAt: DateTime.now(),
-              ),
-            )
-            .toList(),
-      ),
+      (r) => Cart(checkoutItems: transformToCheckoutItems(r)),
     );
     if (results.isLeft()) {
       return left(foldResult as Exception);
@@ -86,44 +47,41 @@ class CartRepository implements ICartRepository {
   }
 
   @override
-  Future<Either<Exception, bool>> removeItem(String removeId) {
+  Future<Either<Exception, bool>> removeFromCart(String removeId) {
     // TODO: implement removeItem
     throw UnimplementedError();
   }
+}
 
-  @override
-  Future<Either<Exception, Cart>> updateItem(
-      String id, Product updatedItem) async {
-    final results = await _localDb.updateItem(
-      CheckoutItemEntity()..id = updatedItem.id!.toInt(),
-    );
-    final foldResult = results.fold(
-      (l) => l,
-      (r) => Cart(
-        checkoutItems: r
-            .map(
-              (e) => CheckoutItem(
-                id: e.id.toString(),
-                product: Product(
-                  id: e.id,
-                  title: e.product?.title ?? '',
-                  description: '',
-                  brand: '',
-                  category: '',
-                  thumbnail: '',
-                  images: [],
-                ),
-                quantity: e.quantity,
-                createdAt: DateTime.now(),
-                updatedAt: DateTime.now(),
-              ),
-            )
-            .toList(),
+List<CheckoutItem> transformToCheckoutItems(
+  List<CheckoutItemEntity> cartItems,
+) {
+  final groupedItems = groupBy(
+    cartItems,
+    (CheckoutItemEntity cartItem) => cartItem.product!.id,
+  );
+
+  final checkoutItems = groupedItems.entries.map((entry) {
+    final productId = entry.key;
+    final cartItemsWithSameProduct = entry.value;
+    final totalQuantity = cartItemsWithSameProduct.length;
+    final product = cartItemsWithSameProduct.first.product;
+
+    return CheckoutItem(
+      id: 'checkout-p-$productId',
+      product: Product(
+        id: int.parse(product?.id.toString() ?? ""),
+        title: product?.title ?? "",
+        description: "",
+        brand: "",
+        category: "",
+        thumbnail: product?.imgUrl ?? "",
+        images: [],
       ),
+      quantity: totalQuantity,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
     );
-    if (results.isLeft()) {
-      return left(foldResult as Exception);
-    }
-    return right(foldResult as Cart);
-  }
+  }).toList();
+  return checkoutItems;
 }

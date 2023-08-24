@@ -7,7 +7,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
-import 'package:riverpod_guide/application/common/storage_provider.dart';
+import '../../shared/providers/storage_provider.dart';
+
+// Project imports:
 
 part 'color_schemes.g.dart';
 
