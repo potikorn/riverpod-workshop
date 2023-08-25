@@ -80,9 +80,10 @@ class ProductItem extends StatelessWidget {
         Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? child) {
             final cartNotifier = ref.read(cartStateNotifierProvider.notifier);
-            return Positioned(
+            return Positioned.directional(
+              textDirection: Directionality.of(context),
               bottom: 4.0,
-              right: 4.0,
+              end: 4.0,
               child: IconButton(
                 onPressed: () => cartNotifier.addToCart(item),
                 icon: const Icon(Icons.add_shopping_cart),
