@@ -59,6 +59,7 @@ dependencies:
   # Code Utils
   fpdart: 1.1.0
   uuid: ^3.0.7
+  collection: ^1.17.2
 
   # Network dependencies
   http: ^1.1.0
@@ -70,7 +71,7 @@ dependencies:
   # Local Database
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
-  collection: ^1.17.1
+  
 
 dev_dependencies:
   flutter_test:

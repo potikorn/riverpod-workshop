@@ -14,7 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:riverpod_guide/application/cart/cart_provider.dart';
 import 'package:riverpod_guide/locales/custom_asset_loader.dart';
 import 'package:riverpod_guide/presentation/app.dart';
-import 'infrastructure/cart/local_datasource/cart_entity.dart';
+import 'infrastructure/cart/source/local/cart_entity.dart';
 import 'shared/providers/storage_provider.dart';
 
 void main() async {

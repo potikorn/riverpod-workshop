@@ -1,9 +1,11 @@
 // Package imports:
+
+// Package imports:
 import 'package:fpdart/fpdart.dart';
 import 'package:isar/isar.dart';
 
 // Project imports:
-import '../../../domain/products/product.dart';
+import '../../../../domain/products/product.dart';
 import 'cart_entity.dart';
 
 abstract class ICartDb {
@@ -11,6 +13,7 @@ abstract class ICartDb {
   Future<Either<Exception, List<CheckoutItemEntity>>> updateItem(
       CheckoutItemEntity entity);
   Future<Either<Exception, List<CheckoutItemEntity>>> getAllItems();
+  Future<Either<Exception, bool>> removeItem(String productId);
 }
 
 class CartDb implements ICartDb {
@@ -31,8 +34,10 @@ class CartDb implements ICartDb {
       ..rating = item.rating
       ..stock = item.stock
       ..imgUrl = item.thumbnail
-      ..id = item.id.toString();
-    final checkoutItem = CheckoutItemEntity()..product = productItem;
+      ..productId = item.id.toString();
+    final checkoutItem = CheckoutItemEntity()
+      ..product = productItem
+      ..updatedAt = DateTime.now();
     final entity = await _db.writeTxn(
       () => _db.checkoutItemEntitys.put(checkoutItem),
     );
@@ -58,8 +63,20 @@ class CartDb implements ICartDb {
 
   @override
   Future<Either<Exception, List<CheckoutItemEntity>>> getAllItems() async {
-    // await _db.writeTxn(_db.checkoutItemEntitys.clear);
     final entities = await _db.checkoutItemEntitys.where().findAll();
     return right(entities);
+  }
+
+  @override
+  Future<Either<Exception, bool>> removeItem(String productId) async {
+    final result = await _db.writeTxn(() async {
+      final products = _db.checkoutItemEntitys
+          .filter()
+          .product((q) => q.productIdEqualTo(productId))
+          .sortByUpdatedAtDesc();
+      return products.limit(1).deleteFirst();
+    });
+
+    return right(result);
   }
 }

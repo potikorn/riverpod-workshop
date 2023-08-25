@@ -7,11 +7,12 @@ part 'cart_entity.g.dart';
 class CheckoutItemEntity {
   Id id = Isar.autoIncrement;
   ProductEntity? product;
+  DateTime? updatedAt;
 }
 
 @embedded
 class ProductEntity {
-  String? id;
+  String? productId;
   String? title;
   String? description;
   String? brand;

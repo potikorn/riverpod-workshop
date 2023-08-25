@@ -32,13 +32,28 @@ abstract class Cart with _$Cart {
 
 @freezed
 abstract class CheckoutItem with _$CheckoutItem {
+  factory CheckoutItem.def({
+    required String id,
+    required Product product,
+    required int quantity,
+    required DateTime updatedAt,
+    DateTime? createdAt,
+  }) = _CheckoutItem;
+
   factory CheckoutItem({
     required String id,
     required Product product,
     required int quantity,
-    required DateTime createdAt,
     required DateTime updatedAt,
-  }) = _CheckoutItem;
+  }) {
+    return _CheckoutItem(
+      id: id,
+      product: product,
+      quantity: quantity,
+      createdAt: DateTime.now(),
+      updatedAt: updatedAt,
+    );
+  }
 
   const CheckoutItem._();
 
@@ -47,7 +62,6 @@ abstract class CheckoutItem with _$CheckoutItem {
       id: '',
       product: Product.empty(),
       quantity: 0,
-      createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
     );
   }

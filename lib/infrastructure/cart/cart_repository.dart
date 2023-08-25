@@ -6,8 +6,8 @@ import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_guide/domain/cart/cart.dart';
 import 'package:riverpod_guide/domain/cart/i_cart_repository.dart';
 import 'package:riverpod_guide/domain/products/product.dart';
-import 'package:riverpod_guide/infrastructure/cart/local_datasource/cart_db.dart';
-import 'package:riverpod_guide/infrastructure/cart/local_datasource/cart_entity.dart';
+import 'package:riverpod_guide/infrastructure/cart/source/local/cart_db.dart';
+import 'package:riverpod_guide/infrastructure/cart/source/local/cart_entity.dart';
 
 class CartRepository implements ICartRepository {
   final ICartDb _localDb;
@@ -47,9 +47,16 @@ class CartRepository implements ICartRepository {
   }
 
   @override
-  Future<Either<Exception, bool>> removeFromCart(String removeId) {
-    // TODO: implement removeItem
-    throw UnimplementedError();
+  Future<Either<Exception, bool>> removeFromCart(String removeId) async {
+    final results = await _localDb.removeItem(removeId);
+    final foldResult = results.fold(
+      (l) => l,
+      (r) => r,
+    );
+    if (results.isLeft()) {
+      return left(foldResult as Exception);
+    }
+    return right(foldResult as bool);
   }
 }
 
@@ -58,30 +65,32 @@ List<CheckoutItem> transformToCheckoutItems(
 ) {
   final groupedItems = groupBy(
     cartItems,
-    (CheckoutItemEntity cartItem) => cartItem.product!.id,
+    (CheckoutItemEntity cartItem) => cartItem.product!.productId,
   );
 
-  final checkoutItems = groupedItems.entries.map((entry) {
-    final productId = entry.key;
-    final cartItemsWithSameProduct = entry.value;
-    final totalQuantity = cartItemsWithSameProduct.length;
-    final product = cartItemsWithSameProduct.first.product;
-
-    return CheckoutItem(
-      id: 'checkout-p-$productId',
-      product: Product(
-        id: int.parse(product?.id.toString() ?? ""),
-        title: product?.title ?? "",
-        description: "",
-        brand: "",
-        category: "",
-        thumbnail: product?.imgUrl ?? "",
-        images: [],
-      ),
-      quantity: totalQuantity,
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-    );
-  }).toList();
+  final checkoutItems = groupedItems.entries
+      .map((entry) {
+        final cartItemsWithSameProduct = entry.value;
+        final totalQuantity = cartItemsWithSameProduct.length;
+        final product = cartItemsWithSameProduct.first.product;
+        return CheckoutItem(
+          id: 'checkout-p-${product?.productId}',
+          product: Product(
+            id: int.tryParse(product?.productId.toString() ?? ""),
+            title: product?.title ?? "",
+            description: product?.description ?? "",
+            brand: product?.brand ?? "",
+            category: product?.category ?? "",
+            thumbnail: product?.imgUrl ?? "",
+            images: [],
+          ),
+          quantity: totalQuantity,
+          updatedAt: DateTime.now(),
+        );
+      })
+      .sortedBy(
+        (element) => element.createdAt!,
+      )
+      .toList();
   return checkoutItems;
 }

@@ -35,7 +35,7 @@ class InMemoryCart implements ICartRepository {
               id: const Uuid().v4(),
               product: item,
               quantity: 1,
-              createdAt: DateTime.now(),
+              // createdAt: DateTime.now(),
               updatedAt: DateTime.now(),
             ),
           ),

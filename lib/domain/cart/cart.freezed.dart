@@ -139,8 +139,46 @@ mixin _$CheckoutItem {
   String get id => throw _privateConstructorUsedError;
   Product get product => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id, Product product, int quantity,
+            DateTime updatedAt, DateTime? createdAt)
+        def,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id, Product product, int quantity,
+            DateTime updatedAt, DateTime? createdAt)?
+        def,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id, Product product, int quantity,
+            DateTime updatedAt, DateTime? createdAt)?
+        def,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CheckoutItem value) def,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CheckoutItem value)? def,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CheckoutItem value)? def,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CheckoutItemCopyWith<CheckoutItem> get copyWith =>
@@ -157,8 +195,8 @@ abstract class $CheckoutItemCopyWith<$Res> {
       {String id,
       Product product,
       int quantity,
-      DateTime createdAt,
-      DateTime updatedAt});
+      DateTime updatedAt,
+      DateTime? createdAt});
 
   $ProductCopyWith<$Res> get product;
 }
@@ -179,8 +217,8 @@ class _$CheckoutItemCopyWithImpl<$Res, $Val extends CheckoutItem>
     Object? id = null,
     Object? product = null,
     Object? quantity = null,
-    Object? createdAt = null,
     Object? updatedAt = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -195,14 +233,14 @@ class _$CheckoutItemCopyWithImpl<$Res, $Val extends CheckoutItem>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 
@@ -227,8 +265,8 @@ abstract class _$$_CheckoutItemCopyWith<$Res>
       {String id,
       Product product,
       int quantity,
-      DateTime createdAt,
-      DateTime updatedAt});
+      DateTime updatedAt,
+      DateTime? createdAt});
 
   @override
   $ProductCopyWith<$Res> get product;
@@ -248,8 +286,8 @@ class __$$_CheckoutItemCopyWithImpl<$Res>
     Object? id = null,
     Object? product = null,
     Object? quantity = null,
-    Object? createdAt = null,
     Object? updatedAt = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$_CheckoutItem(
       id: null == id
@@ -264,14 +302,14 @@ class __$$_CheckoutItemCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -283,8 +321,8 @@ class _$_CheckoutItem extends _CheckoutItem {
       {required this.id,
       required this.product,
       required this.quantity,
-      required this.createdAt,
-      required this.updatedAt})
+      required this.updatedAt,
+      this.createdAt})
       : super._();
 
   @override
@@ -294,13 +332,13 @@ class _$_CheckoutItem extends _CheckoutItem {
   @override
   final int quantity;
   @override
-  final DateTime createdAt;
-  @override
   final DateTime updatedAt;
+  @override
+  final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'CheckoutItem(id: $id, product: $product, quantity: $quantity, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'CheckoutItem.def(id: $id, product: $product, quantity: $quantity, updatedAt: $updatedAt, createdAt: $createdAt)';
   }
 
   @override
@@ -312,21 +350,83 @@ class _$_CheckoutItem extends _CheckoutItem {
             (identical(other.product, product) || other.product == product) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, product, quantity, createdAt, updatedAt);
+      Object.hash(runtimeType, id, product, quantity, updatedAt, createdAt);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_CheckoutItemCopyWith<_$_CheckoutItem> get copyWith =>
       __$$_CheckoutItemCopyWithImpl<_$_CheckoutItem>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id, Product product, int quantity,
+            DateTime updatedAt, DateTime? createdAt)
+        def,
+  }) {
+    return def(id, product, quantity, updatedAt, createdAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id, Product product, int quantity,
+            DateTime updatedAt, DateTime? createdAt)?
+        def,
+  }) {
+    return def?.call(id, product, quantity, updatedAt, createdAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id, Product product, int quantity,
+            DateTime updatedAt, DateTime? createdAt)?
+        def,
+    required TResult orElse(),
+  }) {
+    if (def != null) {
+      return def(id, product, quantity, updatedAt, createdAt);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CheckoutItem value) def,
+  }) {
+    return def(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CheckoutItem value)? def,
+  }) {
+    return def?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CheckoutItem value)? def,
+    required TResult orElse(),
+  }) {
+    if (def != null) {
+      return def(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class _CheckoutItem extends CheckoutItem {
@@ -334,8 +434,8 @@ abstract class _CheckoutItem extends CheckoutItem {
       {required final String id,
       required final Product product,
       required final int quantity,
-      required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$_CheckoutItem;
+      required final DateTime updatedAt,
+      final DateTime? createdAt}) = _$_CheckoutItem;
   _CheckoutItem._() : super._();
 
   @override
@@ -345,9 +445,9 @@ abstract class _CheckoutItem extends CheckoutItem {
   @override
   int get quantity;
   @override
-  DateTime get createdAt;
-  @override
   DateTime get updatedAt;
+  @override
+  DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_CheckoutItemCopyWith<_$_CheckoutItem> get copyWith =>

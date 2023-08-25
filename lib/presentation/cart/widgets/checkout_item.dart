@@ -77,7 +77,7 @@ class _QuantityControl extends ConsumerWidget {
             if (item.quantity <= 1) {
               return;
             }
-            cart.updateQuantity(
+            cart.removeFromCart(
               item: item.product,
               quantity: item.quantity - 1,
             );
@@ -90,10 +90,7 @@ class _QuantityControl extends ConsumerWidget {
           ),
         ),
         FilledButton(
-          onPressed: () => cart.updateQuantity(
-            item: item.product,
-            quantity: item.quantity + 1,
-          ),
+          onPressed: () => cart.addToCart(item.product),
           child: const Icon(Icons.add),
         ),
       ],
