@@ -59,7 +59,7 @@ dependencies:
   # Code Utils
   fpdart: 1.1.0
   uuid: ^3.0.7
-  collection: ^1.17.2
+  collection: ^1.17.1
 
   # Network dependencies
   http: ^1.1.0
@@ -139,3 +139,4 @@ flutter:
 
 dart_pre_commit:
   outdated: false
+  pull-up-dependencies: false
