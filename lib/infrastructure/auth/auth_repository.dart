@@ -1,17 +1,20 @@
 // Package imports:
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 // Project imports:
 import 'package:riverpod_guide/application/config/network/base_http_client.dart';
 import 'package:riverpod_guide/application/config/network/error_exception.dart';
 import 'package:riverpod_guide/domain/auth/i_auth_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository implements IAuthRepository {
   final BaseHttpClient _client;
   final SharedPreferences _pref;
 
   const AuthRepository(this._client, this._pref);
+
+  @visibleForTesting
+  static const tokenKeyPref = "token";
 
   @override
   Future<Either<NetworkException, String>> authenticate(
