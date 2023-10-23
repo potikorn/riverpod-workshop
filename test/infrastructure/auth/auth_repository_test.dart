@@ -1,10 +1,13 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// Project imports:
 import 'package:riverpod_guide/application/config/network/base_http_client.dart';
 import 'package:riverpod_guide/application/config/network/error_exception.dart';
 import 'package:riverpod_guide/infrastructure/auth/auth_repository.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MockHttpClient extends Mock implements BaseHttpClient {}
 

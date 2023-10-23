@@ -9,7 +9,7 @@ import 'package:riverpod_guide/infrastructure/auth/models/auth_state.dart';
 import '../../shared/providers/http_provider.dart';
 import '../../shared/providers/storage_provider.dart';
 
-final authRepository = Provider<AuthRepository>((ref) {
+final authRepository = Provider<IAuthRepository>((ref) {
   final client = ref.watch(httpClient);
   final pref = ref.watch(sharedPreferencesProvider);
   return AuthRepository(client, pref);
@@ -40,20 +40,16 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       );
       return;
     }
-    state = state.copyWith(
-      status: AuthStatus.unauthenticated,
-    );
+    state = state.copyWith(status: AuthStatus.unauthenticated);
   }
 
   Future<void> login(String email, String password) async {
-    state = state.copyWith(
-      loading: true,
-      errorMessage: "",
-    );
+    state = state.copyWith(loading: true, errorMessage: "");
     final results = await _repository.authenticate(email, password);
     results.fold(
       (e) {
         state = state.copyWith(
+          status: AuthStatus.unauthenticated,
           errorMessage: e.mapOrNull(
             unauthorized: (_) => "unauthorized",
             serverError: (_) => "serverError",
@@ -69,9 +65,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
         );
       },
     );
-    state = state.copyWith(
-      loading: false,
-    );
+    state = state.copyWith(loading: false);
   }
 
   Future<void> logout() async {
@@ -87,7 +81,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     );
   }
 
-  void setUnAuthorized() {
+  Future<void> setUnAuthorized() async {
     state = state.copyWith(
       errorMessage: null,
       accessToken: null,
